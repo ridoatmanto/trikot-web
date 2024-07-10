@@ -1,6 +1,6 @@
-import { getTasks } from "../storage/tasks.tsx";
-import { Card } from "../components/card.tsx";
-import { useState } from "react";
+// import { getTasks } from "../storage/tasks.tsx";
+// import { Card } from "../components/card.tsx";
+// import { useState } from "react";
 
 export default function App() {
   const [task, setTasks] = useState(getTasks());
