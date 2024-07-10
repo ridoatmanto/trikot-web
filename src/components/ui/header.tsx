@@ -18,17 +18,17 @@ export function Header() {
             <div className="text-black">
               <Link to="/" className="space-x-3 rtl:space-x-reverse">
                 <img
-                  src="./productiv.svg"
-                  alt="Productive Logo"
+                  src="./bvb-logo.svg"
+                  alt="Trikot BVB logo"
                   className="h-8 float-left"
                 />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                  Productiv
+                  Trikot
                 </span>
               </Link>
             </div>
             <div className="text-md italic mb-4 text-slate-500">
-              Your best productivity companion.
+              Die Borussen Trikot
             </div>
           </div>
         </div>
