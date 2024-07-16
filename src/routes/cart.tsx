@@ -47,7 +47,7 @@ export function Cart() {
                 className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
               >
                 <img
-                  src="../src/assets/product-images/dortmund-jersey-home-2023-2024.png"
+                  src="./product-images/dortmund-jersey-home-2023-2024.png"
                   alt="BVB Trikot Logo"
                   className="h-36 float-left mr-2"
                 />
@@ -79,7 +79,7 @@ export function Cart() {
                 className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
               >
                 <img
-                  src="../src/assets/product-images/dortmund-short-2023-2024.png"
+                  src="./product-images/dortmund-short-2023-2024.png"
                   alt="BVB Trikot Logo"
                   className="h-36 float-left mr-2"
                 />
