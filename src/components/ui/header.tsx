@@ -19,16 +19,16 @@ export function Header() {
               <Link to="/" className="space-x-3 rtl:space-x-reverse">
                 <img
                   src="./bvb-logo.svg"
-                  alt="Trikot BVB logo"
+                  alt="BVB Trikot Logo"
                   className="h-8 float-left"
                 />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                  Trikot
+                  Die Borussen Trikot
                 </span>
               </Link>
             </div>
             <div className="text-md italic mb-4 text-slate-500">
-              Die Borussen Trikot
+              Your best productivity companion.
             </div>
           </div>
         </div>
@@ -71,14 +71,54 @@ export function Header() {
             </li>
             <li>
               <Link
-                to="/activity"
+                to="/login"
                 className={
-                  location.pathname === "/activity"
-                    ? activePageClass
-                    : pageClass
+                  location.pathname === "/login" ? activePageClass : pageClass
                 }
               >
-                Log Activity
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/order"
+                className={
+                  location.pathname === "/order" ? activePageClass : pageClass
+                }
+              >
+                Order
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/cart"
+                className={
+                  location.pathname === "/cart" ? activePageClass : pageClass
+                }
+              >
+                Cart{" "}
+                <svg
+                  className={
+                    "inline-block w-6 h-6 text-gray-800 dark:text-white" +
+                    (location.pathname === "/cart"
+                      ? activePageClass
+                      : pageClass)
+                  }
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"
+                  />
+                </svg>
               </Link>
             </li>
             <li>

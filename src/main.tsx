@@ -3,7 +3,10 @@ import ReactDOM from "react-dom/client";
 import React from "react";
 
 import { Layout } from "./components/ui/layout";
-import { Activity } from "./routes/activity";
+import { Login } from "./routes/login";
+import { Detail } from "./routes/detail";
+import { Cart } from "./routes/cart";
+import { Order } from "./routes/order";
 import App from "./routes/app";
 
 import "./index.css";
@@ -18,8 +21,20 @@ const router = createBrowserRouter([
         element: <App />,
       },
       {
-        path: "/activity",
-        element: <Activity />,
+        path: "/detail",
+        element: <Detail />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/order",
+        element: <Order />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
