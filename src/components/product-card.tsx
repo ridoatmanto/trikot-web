@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
+import { Product } from "../types";
 
-export function ProductCard() {
+export function ProductCard({ product }: { product: Product }) {
   return (
     <div className="w-full rounded-lg lg:mb-0 bg-slate-50 dark:bg-slate-700">
       <div className="text-center text-slate-500 px-2 py-2 dark:text-slate-400 border-b-1 border-dashed border-slate-100 dark:border-slate-50">
         <img
           src="./product-images/dortmund-jersey-home-2023-2024.png"
-          alt="BVB Trikot Logo"
+          alt={product.name}
           className="w-42"
         />
-        <p className="text-md uppercase">BORUSSIA DORTMUND HOME JERSEY</p>
-        <h2 className="font-bold text-xl">Rp 150.000</h2>
-        <Link to="/detail">
+        <p className="text-md uppercase">{product.name}</p>
+        <h2 className="font-bold text-xl">Rp {product.price}</h2>
+        <Link to={`/detail/${product.id}`}>
           <button
             type="submit"
             className="mt-2 bg-[#AAAAAA] hover:bg-[#B6B6B6] rounded-lg px-1.5 py-1 text-white text-md"
