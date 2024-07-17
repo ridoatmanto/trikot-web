@@ -8,7 +8,6 @@ export async function loader() {
     `${import.meta.env.VITE_BACKEND_API_URL}/products`
   );
   const products: Product[] = await response.json();
-  console.log("products", products);
   return { products };
 }
 
