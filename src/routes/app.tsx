@@ -21,19 +21,19 @@ export function AppRoute() {
         <ProductCard product={products[0]} />
       </div>
       <div className="mr-0 lg:mr-4 mb-4">
-        <ProductCard product={products[0]} />
+        <ProductCard product={products[1]} />
       </div>
       <div className="mr-0 lg:mr-4 mb-4">
-        <ProductCard product={products[0]} />
+        <ProductCard product={products[2]} />
       </div>
       <div className="mr-0 lg:mr-4 mb-4">
-        <ProductCard product={products[0]} />
+        <ProductCard product={products[3]} />
       </div>
       <div className="mr-0 lg:mr-4 mb-4">
-        <ProductCard product={products[0]} />
+        <ProductCard product={products[4]} />
       </div>
       <div className="mr-0 lg:mr-4 mb-4">
-        <ProductCard product={products[0]} />
+        <ProductCard product={products[5]} />
       </div>
     </div>
   );
