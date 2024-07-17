@@ -1,129 +1,18 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Product } from "../types";
 
-import { updateTaskStatus, removeTask, saveTasks } from "../storage/tasks.tsx";
-import { SortByDate } from "../utils/sort-by-date";
-import { RandomId } from "../utils/random-id";
-import { ExpandButton } from "./ui/expand-button";
-import { AddTaskForm } from "./ui/add-task-form";
-
-const todoBackground = "bg-stone-500";
-const todoBorder = "border-stone-500";
-
-const progressBackground = "bg-cyan-500";
-const progressBorder = "border-cyan-500";
-
-const doneBackground = "bg-green-500";
-const doneBorder = "border-green-500";
-
-export function ProductCard({
-  title,
-  tasks,
-  status,
-  stateCallback,
-}: {
-  title: string;
-  tasks: any;
-  status: any;
-  stateCallback: any;
-}) {
-  let background = todoBackground;
-  let border = todoBorder;
-
-  if (status === "progress") {
-    background = progressBackground;
-    border = progressBorder;
-  }
-
-  if (status === "done") {
-    background = doneBackground;
-    border = doneBorder;
-  }
-
-  const filteredList = tasks.filter((task: any) => {
-    return task.status === status;
-  });
-
-  const [isToggleAdd, setToggleAdd] = useState(false);
-
-  const showAddList = () => {
-    setToggleAdd((isToggleAdd: boolean) => !isToggleAdd);
-  };
-
-  const [task, setTask] = useState("");
-
-  const handleChange = (event: any) => {
-    setTask(event.target.value);
-  };
-
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-
-    const submittedTask = task;
-    if (
-      submittedTask === null ||
-      submittedTask === "" ||
-      submittedTask === undefined
-    ) {
-      console.error("WARNING: Empty task not allowed!");
-      return;
-    }
-
-    const newTaskList = {
-      id: RandomId(),
-      task: submittedTask[0].toUpperCase() + submittedTask.slice(1),
-      status: status,
-      created_at: new Date(),
-    };
-    stateCallback([...tasks, newTaskList]);
-    setTask("");
-  };
-
-  const [movedList, setMovedList] = useState<string[]>([]);
-
-  const addIntoMovedList = (id: string) => {
-    if (movedList.length == 0) {
-      setMovedList([id]);
-      return;
-    }
-
-    if (movedList.includes(id)) {
-      const updatedMovedList = movedList.filter((taskId: any) => taskId !== id);
-      setMovedList(updatedMovedList);
-    } else {
-      setMovedList([...movedList, id]);
-    }
-  };
-
-  const moveTask = (event: any) => {
-    event.preventDefault();
-    stateCallback(updateTaskStatus(movedList, targetCard));
-    setTargetCard("");
-    setMovedList([]);
-  };
-
-  const deleteTask = (id: string) => {
-    stateCallback(removeTask(id));
-    saveTasks(removeTask(id));
-  };
-
-  const [targetCard, setTargetCard] = useState("");
-
-  const handleTargetCardChange = (event: any) => {
-    setTargetCard(event.target.value);
-  };
-
+export function ProductCard({ product }: { product: Product }) {
   return (
     <div className="w-full rounded-lg lg:mb-0 bg-slate-50 dark:bg-slate-700">
       <div className="text-center text-slate-500 px-2 py-2 dark:text-slate-400 border-b-1 border-dashed border-slate-100 dark:border-slate-50">
         <img
-          src="../src/assets/product-images/dortmund-jersey-home-2023-2024.png"
-          alt="BVB Trikot Logo"
+          src={`./product-images/${product.image}`}
+          alt={product.name}
           className="w-42"
         />
-        <p className="text-md uppercase">BORUSSIA DORTMUND HOME JERSEY</p>
-        <h2 className="font-bold text-xl">Rp 150.000</h2>
-        <Link to="/detail">
+        <p className="text-md uppercase">{product.name}</p>
+        <h2 className="font-bold text-xl">Rp {product.price}</h2>
+        <Link to={`/detail/${product.id}`}>
           <button
             type="submit"
             className="mt-2 bg-[#AAAAAA] hover:bg-[#B6B6B6] rounded-lg px-1.5 py-1 text-white text-md"
