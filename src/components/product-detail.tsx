@@ -71,13 +71,13 @@ export function ProductDetail({ product }: { product: Product }) {
             </button>
             {cartNotification ? (
               <div
-                className="flex items-center mt-2 p-2 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-500 dark:text-green-400"
+                className="flex items-center mt-2 p-2 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-600 dark:text-green-400"
                 role="alert"
               >
                 <Info className="mr-2" />
                 <span className="sr-only">Info</span>
                 <div>
-                  <span className="font-medium">Success!</span> Add Product to
+                  <span className="font-medium">Success!</span> Add product to
                   cart.
                 </div>
               </div>
