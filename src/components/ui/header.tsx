@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
+import { ShoppingCart } from "lucide-react";
 import { DarkThemeToggle, Flowbite } from "flowbite-react";
 
 export function Header() {
@@ -28,7 +29,7 @@ export function Header() {
               </Link>
             </div>
             <div className="text-md italic mb-4 text-slate-500">
-              Your best productivity companion.
+              Die Schwarzgelben official shop.
             </div>
           </div>
         </div>
@@ -96,29 +97,14 @@ export function Header() {
                   location.pathname === "/cart" ? activePageClass : pageClass
                 }
               >
-                Cart{" "}
-                <svg
+                <ShoppingCart
                   className={
-                    "pr-0 inline-block w-6 h-6 text-gray-800 dark:text-white" +
+                    "-ml-2 pr-0 inline-block w-6 h-6 text-gray-800 dark:text-white" +
                     (location.pathname === "/cart"
                       ? activePageClass
                       : pageClass)
                   }
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"
-                  />
-                </svg>
+                />
                 <span className="inline-flex items-center justify-center w-4 h-4 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
                   2
                 </span>
