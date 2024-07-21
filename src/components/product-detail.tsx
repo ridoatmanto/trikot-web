@@ -5,7 +5,7 @@ import { currencyFormat } from "../libs/currency-format";
 import { Quantity } from "./ui/quantity";
 import { Size } from "./ui/size";
 
-export function ProductDetail({ product }: { product: Product | {} }) {
+export function ProductDetail({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("M");
 
