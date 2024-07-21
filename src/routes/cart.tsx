@@ -24,7 +24,7 @@ export function Cart() {
                 Product name
               </th>
               <th scope="col" className="px-6 py-3">
-                Price
+                Sub Total Price
               </th>
             </tr>
           </thead>
