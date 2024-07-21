@@ -99,7 +99,7 @@ export function Header() {
                 Cart{" "}
                 <svg
                   className={
-                    "inline-block w-6 h-6 text-gray-800 dark:text-white" +
+                    "pr-0 inline-block w-6 h-6 text-gray-800 dark:text-white" +
                     (location.pathname === "/cart"
                       ? activePageClass
                       : pageClass)
@@ -119,6 +119,9 @@ export function Header() {
                     d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"
                   />
                 </svg>
+                <span className="inline-flex items-center justify-center w-4 h-4 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
+                  2
+                </span>
               </Link>
             </li>
             <li>
