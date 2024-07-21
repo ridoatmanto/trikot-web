@@ -4,10 +4,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { Layout } from "./components/ui/layout";
 import { Login } from "./routes/login";
-import { Detail } from "./routes/detail";
 import { Cart } from "./routes/cart";
 import { Order } from "./routes/order";
-import { AppRoute, loader as appLoader } from "./routes/app";
+import { ProductsRoute, loader as productsLoader } from "./routes/products";
+import {
+  ProductDetailRoute,
+  loader as productDetailLoader,
+} from "./routes/product-detail";
 
 import "./index.css";
 
@@ -18,12 +21,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <AppRoute />,
-        loader: appLoader,
+        element: <ProductsRoute />,
+        loader: productsLoader,
       },
       {
-        path: "/detail",
-        element: <Detail />,
+        path: "/products/:slug",
+        element: <ProductDetailRoute />,
+        loader: productDetailLoader,
       },
       {
         path: "/login",
