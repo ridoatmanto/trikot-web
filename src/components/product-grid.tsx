@@ -7,7 +7,7 @@ export function ProductGrid({ products }: { products: Product[] }) {
     <div className="grid grid-cols-1 lg:grid-cols-3 lg:mx-0 min-h-72">
       {products.map((product) => (
         <div key={`key-${product.id}`} className="mr-0 lg:mr-4 mb-4">
-          <div className="w-full rounded-lg lg:mb-0 bg-slate-50 dark:bg-slate-700 hover:dark:bg-slate-800 text-center">
+          <div className="w-full rounded-lg lg:mb-0 bg-slate-50 dark:bg-slate-700 hover:dark:bg-slate-600 border border-slate-600 hover:dark:border-slate-400 text-center">
             <Link
               to={`/products/${product.slug}`}
               className="text-slate-500 dark:text-slate-400"
