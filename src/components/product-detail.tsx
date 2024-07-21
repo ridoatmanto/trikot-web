@@ -8,22 +8,7 @@ import { Quantity } from "./ui/quantity";
 import { Size } from "./ui/size";
 
 export function ProductDetail({ product }: { product: Product }) {
-  const [cartNotification, setCartNotification] = useState(null);
-
-  const notification = () => {
-    return (
-      <div
-        className="flex items-center mt-2 p-2 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-500 dark:text-green-400"
-        role="alert"
-      >
-        <Info className="mr-2" />
-        <span className="sr-only">Info</span>
-        <div>
-          <span className="font-medium">Success!</span> Add Product to cart.
-        </div>
-      </div>
-    );
-  };
+  const [cartNotification, setCartNotification] = useState(false);
 
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("M");
@@ -43,8 +28,8 @@ export function ProductDetail({ product }: { product: Product }) {
   };
 
   const addCartClick = () => {
-    setCartNotification(notification());
-    setTimeout(() => setCartNotification(null), 5000);
+    setCartNotification(true);
+    setTimeout(() => setCartNotification(false), 5000);
   };
 
   return (
@@ -84,7 +69,21 @@ export function ProductDetail({ product }: { product: Product }) {
               <ShoppingCart className="inline w-6 h-6 text-gray-800 mr-2" />
               Add to cart
             </button>
-            {cartNotification}
+            {cartNotification ? (
+              <div
+                className="flex items-center mt-2 p-2 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-500 dark:text-green-400"
+                role="alert"
+              >
+                <Info className="mr-2" />
+                <span className="sr-only">Info</span>
+                <div>
+                  <span className="font-medium">Success!</span> Add Product to
+                  cart.
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div className="col-span-2 description">
