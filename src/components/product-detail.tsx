@@ -1,4 +1,5 @@
 import { useState } from "react";
+import parse from "html-react-parser";
 
 import { Product } from "../types";
 import { currencyFormat } from "../libs/currency-format";
@@ -62,11 +63,11 @@ export function ProductDetail({ product }: { product: Product }) {
 
           <button
             type="button"
-            className="block mt-4 bg-[#D9D9D9] hover:bg-slate-400 rounded-lg px-1.5 py-1 text-gray-800 hover:text-white text-md"
+            className="block mt-4 bg-[#D9D9D9] hover:bg-slate-400 rounded-lg px-1.5 py-1 text-gray-800 text-md"
             onClick={() => addCartClick()}
           >
             <svg
-              className="inline w-6 h-6 text-gray-800 hover:text-white"
+              className="inline w-6 h-6 text-gray-800"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -90,10 +91,9 @@ export function ProductDetail({ product }: { product: Product }) {
         <span className="text-slate-500 dark:text-slate-400 font-semibold">
           DESCRIPTIONS:
         </span>
-        <p
-          className="ml-2 mr-0 lg:mr-4 mb-4 col-span-2 text-slate-500 px-2 py-2 dark:text-slate-400"
-          dangerouslySetInnerHTML={{ __html: product.description }}
-        ></p>
+        <div className="ml-2 mr-0 lg:mr-4 mb-4 col-span-2 text-slate-500 px-2 py-2 dark:text-slate-400">
+          {parse(product.description)}
+        </div>
       </div>
     </div>
   );
