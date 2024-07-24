@@ -4,28 +4,9 @@ import { ShoppingCart, Info } from "lucide-react";
 
 import { Product } from "../types";
 import { currencyFormat } from "../libs/currency-format";
-import { Quantity } from "./ui/quantity";
-import { Size } from "./ui/size";
 
 export function ProductDetail({ product }: { product: Product }) {
   const [cartNotification, setCartNotification] = useState(false);
-
-  const [quantity, setQuantity] = useState(1);
-  const [size, setSize] = useState("M");
-
-  const addQuantity = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const reduceQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
-  const sizeClick = (choosenSize: string) => {
-    setSize(choosenSize);
-  };
 
   const addCartClick = () => {
     setCartNotification(true);
