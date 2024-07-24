@@ -19,7 +19,7 @@ export function Header() {
             <div className="text-black">
               <Link to="/" className="space-x-3 rtl:space-x-reverse">
                 <img
-                  src="./bvb-logo.svg"
+                  src="https://trikot.ridoatmanto.com/bvb-logo.svg"
                   alt="BVB Trikot Logo"
                   className="h-8 float-left"
                 />
