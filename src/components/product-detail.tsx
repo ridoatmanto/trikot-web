@@ -47,19 +47,7 @@ export function ProductDetail({ product }: { product: Product }) {
         <div className="mr-0 lg:mr-4 mb-4 text-slate-500 px-2 pb-2 dark:text-slate-400">
           <h2 className="text-2xl uppercase font-bold">{product.name}</h2>
           <p className="font-bold text-xl">{currencyFormat(product.price)}</p>
-
-          <div className="uppercase mt-4 block mb-2 text-sm font-medium text-slate-500 dark:text-slate-400">
-            <span className="mr-2">SIZE :</span>
-            <Size currentValue={size} changeInputHandle={sizeClick} />
-          </div>
-
           <div>
-            <Quantity
-              currentValue={quantity}
-              reduceInputHandle={reduceQuantity}
-              addInputHandle={addQuantity}
-            />
-
             <button
               id="triggerElement"
               type="button"
