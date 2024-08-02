@@ -10,6 +10,7 @@ export type Product = {
 };
 
 export type User = {
+  user: any;
   id: string;
 
   fullname?: string;

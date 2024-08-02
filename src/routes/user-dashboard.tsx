@@ -6,7 +6,6 @@ import { Button } from "../components/ui/button";
 export async function loader() {
   const user = await auth.checkUser();
   if (!user) return redirect("/login");
-  console.log("user", user.user);
   return { user };
 }
 

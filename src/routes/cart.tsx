@@ -2,7 +2,7 @@ import { useState } from "react";
 import { redirect, useLoaderData } from "react-router-dom";
 import { currencyFormat } from "../libs/currency-format";
 
-import { Cart, CartItem } from "../types";
+import { Cart } from "../types";
 import { BACKEND_API_URL } from "../libs/env";
 import { auth } from "../libs/auth";
 import { Trash2 } from "lucide-react";
