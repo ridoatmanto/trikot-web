@@ -1,10 +1,17 @@
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { User } from "../../types";
+import { Link, redirect, useLocation, Form } from "react-router-dom";
+import { Button } from "../../components/ui/button";
 
 import { ShoppingCart } from "lucide-react";
 import { DarkThemeToggle, Flowbite } from "flowbite-react";
+import { auth } from "../../libs/auth";
 
-export function Header() {
+interface SiteNavigationProps {
+  isAuthenticated?: boolean;
+  user?: User | null;
+}
+
+export function Header({ isAuthenticated, user }: SiteNavigationProps) {
   const location = useLocation();
   const activePageClass =
     "leading-{100} block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500";
@@ -70,17 +77,41 @@ export function Header() {
                 Home
               </Link>
             </li>
-            <li>
-              <Link
-                to="/login"
-                className={
-                  location.pathname === "/login" ? activePageClass : pageClass
-                }
-              >
-                Login
-              </Link>
-            </li>
-            <li>
+            {!isAuthenticated && (
+              <>
+                <li>
+                  <Link
+                    to="/login"
+                    className={
+                      location.pathname === "/login"
+                        ? activePageClass
+                        : pageClass
+                    }
+                  >
+                    Login
+                  </Link>
+                </li>
+              </>
+            )}
+
+            {isAuthenticated && user && (
+              <>
+                <li>
+                  <Link
+                    to="/dashboard"
+                    className={
+                      location.pathname === "/dashboard"
+                        ? activePageClass
+                        : pageClass
+                    }
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+              </>
+            )}
+
+            {/* <li>
               <Link
                 to="/order"
                 className={
@@ -89,7 +120,7 @@ export function Header() {
               >
                 Order
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 to="/cart"
@@ -105,9 +136,9 @@ export function Header() {
                       : pageClass)
                   }
                 />
-                <span className="inline-flex items-center justify-center w-4 h-4 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
+                {/* <span className="inline-flex items-center justify-center w-4 h-4 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
                   2
-                </span>
+                </span> */}
               </Link>
             </li>
             <li>
@@ -121,3 +152,9 @@ export function Header() {
     </nav>
   );
 }
+
+export const action = async () => {
+  // e.preventDefault();
+  auth.logout();
+  return redirect("/login");
+};

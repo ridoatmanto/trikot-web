@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { Layout } from "./components/ui/layout";
+import { Layout, loader as layoutLoader } from "./components/ui/layout";
 import { Order } from "./routes/order";
 import { ProductsRoute, loader as productsLoader } from "./routes/products";
 import {
@@ -28,6 +28,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    loader: layoutLoader,
     children: [
       {
         path: "/",
