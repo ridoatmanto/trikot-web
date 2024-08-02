@@ -3,8 +3,6 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { Layout } from "./components/ui/layout";
-import { Login } from "./routes/login";
-import { Cart } from "./routes/cart";
 import { Order } from "./routes/order";
 import { ProductsRoute, loader as productsLoader } from "./routes/products";
 import {
@@ -41,10 +39,6 @@ const router = createBrowserRouter([
         element: <ProductDetailRoute />,
         loader: productDetailLoader,
       },
-      // {
-      //   path: "/login",
-      //   element: <Login />,
-      // },
       {
         path: "/login",
         element: <LoginRoute />,
@@ -66,10 +60,6 @@ const router = createBrowserRouter([
         path: "/order",
         element: <Order />,
       },
-      // {
-      //   path: "/cart",
-      //   element: <Cart />,
-      // },
     ],
   },
 ]);
