@@ -1,14 +1,41 @@
 import { useState } from "react";
 import parse from "html-react-parser";
+import { redirect } from "react-router-dom";
+
 import { ShoppingCart, Info } from "lucide-react";
 
-import { Product } from "../types";
+import { Product, Cart } from "../types";
+
 import { currencyFormat } from "../libs/currency-format";
+import { auth } from "../libs/auth";
+import { BACKEND_API_URL } from "../libs/env";
 
 export function ProductDetail({ product }: { product: Product }) {
   const [cartNotification, setCartNotification] = useState(false);
 
-  const addCartClick = () => {
+  const addCartClick = async () => {
+    await auth.checkUser();
+    console.log("auth.isAuthenticated", auth.isAuthenticated);
+    if (!auth.isAuthenticated) return redirect("/login");
+
+    const user = await auth.checkUser();
+    const cartItem = {
+      productId: product.id,
+      userId: user.id,
+      quantity: 1,
+    };
+
+    const response = await fetch(`${BACKEND_API_URL}/carts`, {
+      method: "POST",
+      body: JSON.stringify(cartItem),
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    const cart: Cart = await response.json();
+    console.log(cart);
     setCartNotification(true);
     setTimeout(() => setCartNotification(false), 5000);
   };
@@ -29,6 +56,8 @@ export function ProductDetail({ product }: { product: Product }) {
           <h2 className="text-2xl uppercase font-bold">{product.name}</h2>
           <p className="font-bold text-xl">{currencyFormat(product.price)}</p>
           <div>
+            {/* {!user && <p className="mt-4">*Please login before add to cart!</p>} */}
+            {/* {user && ( */}
             <button
               id="triggerElement"
               type="button"
@@ -38,6 +67,7 @@ export function ProductDetail({ product }: { product: Product }) {
               <ShoppingCart className="inline w-6 h-6 text-gray-800 mr-2" />
               Add to cart
             </button>
+            {/* )} */}
             {cartNotification ? (
               <div
                 className="flex items-center mt-2 p-2 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-600 dark:text-green-400"
