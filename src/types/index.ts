@@ -21,6 +21,7 @@ export type User = {
 };
 
 export type Cart = {
+  [x: string]: any;
   id: string;
 
   userId: string | null;
