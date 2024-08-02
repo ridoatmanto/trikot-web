@@ -1,6 +1,5 @@
 import { User } from "../../types";
-import { Link, redirect, useLocation, Form } from "react-router-dom";
-import { Button } from "../../components/ui/button";
+import { Link, redirect, useLocation } from "react-router-dom";
 
 import { ShoppingCart } from "lucide-react";
 import { DarkThemeToggle, Flowbite } from "flowbite-react";
