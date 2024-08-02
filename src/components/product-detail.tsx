@@ -19,11 +19,14 @@ export function ProductDetail({ product }: { product: Product }) {
     if (!auth.isAuthenticated) return redirect("/login");
 
     const user = await auth.checkUser();
-    const cartItem = {
-      productId: product.id,
-      userId: user.id,
-      quantity: 1,
-    };
+    let cartItem = null;
+    if (user) {
+      cartItem = {
+        productId: product.id,
+        userId: user.id,
+        quantity: 1,
+      };
+    }
 
     const response = await fetch(`${BACKEND_API_URL}/carts`, {
       method: "POST",
