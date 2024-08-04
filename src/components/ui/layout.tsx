@@ -17,8 +17,6 @@ export async function loader() {
   };
 }
 
-// export function RootRoute() {
-
 import { Outlet, useLoaderData } from "react-router-dom";
 
 import { Header } from "./header";

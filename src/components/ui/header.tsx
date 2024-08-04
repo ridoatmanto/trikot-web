@@ -5,6 +5,8 @@ import { ShoppingCart } from "lucide-react";
 import { DarkThemeToggle, Flowbite } from "flowbite-react";
 import { auth } from "../../libs/auth";
 
+import { useCookies } from "react-cookie";
+
 interface SiteNavigationProps {
   isAuthenticated?: boolean;
   user?: User | null;
@@ -12,6 +14,9 @@ interface SiteNavigationProps {
 
 export function Header({ isAuthenticated, user }: SiteNavigationProps) {
   const location = useLocation();
+
+  const [cookies] = useCookies(["cart-count"]);
+
   const activePageClass =
     "leading-{100} block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500";
   const pageClass =
@@ -107,6 +112,30 @@ export function Header({ isAuthenticated, user }: SiteNavigationProps) {
                     Dashboard
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    to="/cart"
+                    className={
+                      location.pathname === "/cart"
+                        ? activePageClass
+                        : pageClass
+                    }
+                  >
+                    <ShoppingCart
+                      className={
+                        "-ml-2 pr-0 inline-block w-6 h-6 text-gray-800 dark:text-white" +
+                        (location.pathname === "/cart"
+                          ? activePageClass
+                          : pageClass)
+                      }
+                    />
+                    {cookies["cart-count"] > 0 && (
+                      <span className="inline-flex items-center justify-center w-4 h-4 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
+                        {cookies["cart-count"]}
+                      </span>
+                    )}
+                  </Link>
+                </li>
               </>
             )}
 
@@ -120,26 +149,7 @@ export function Header({ isAuthenticated, user }: SiteNavigationProps) {
                 Order
               </Link>
             </li> */}
-            <li>
-              <Link
-                to="/cart"
-                className={
-                  location.pathname === "/cart" ? activePageClass : pageClass
-                }
-              >
-                <ShoppingCart
-                  className={
-                    "-ml-2 pr-0 inline-block w-6 h-6 text-gray-800 dark:text-white" +
-                    (location.pathname === "/cart"
-                      ? activePageClass
-                      : pageClass)
-                  }
-                />
-                {/* <span className="inline-flex items-center justify-center w-4 h-4 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
-                  2
-                </span> */}
-              </Link>
-            </li>
+
             <li>
               <Flowbite theme={{ mode: "dark" }}>
                 <DarkThemeToggle className="md:-mt-1" />

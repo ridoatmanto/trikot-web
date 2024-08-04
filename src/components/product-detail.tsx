@@ -9,9 +9,11 @@ import { Product, Cart } from "../types";
 import { currencyFormat } from "../libs/currency-format";
 import { auth } from "../libs/auth";
 import { BACKEND_API_URL } from "../libs/env";
+import { useCookies } from "react-cookie";
 
 export function ProductDetail({ product }: { product: Product }) {
   const [cartNotification, setCartNotification] = useState(false);
+  const [cookies, setCookie] = useCookies(["cart-count"]);
 
   const addCartClick = async () => {
     await auth.checkUser();
@@ -40,6 +42,13 @@ export function ProductDetail({ product }: { product: Product }) {
     const cart: Cart = await response.json();
     console.log(cart);
     setCartNotification(true);
+
+    if (!cookies["cart-count"]) {
+      setCookie("cart-count", 1);
+    } else {
+      setCookie("cart-count", cookies["cart-count"] + 1);
+    }
+
     setTimeout(() => setCartNotification(false), 5000);
   };
 
@@ -59,18 +68,20 @@ export function ProductDetail({ product }: { product: Product }) {
           <h2 className="text-2xl uppercase font-bold">{product.name}</h2>
           <p className="font-bold text-xl">{currencyFormat(product.price)}</p>
           <div>
-            {/* {!user && <p className="mt-4">*Please login before add to cart!</p>} */}
-            {/* {user && ( */}
-            <button
-              id="triggerElement"
-              type="button"
-              className="block mt-4 bg-[#D9D9D9] hover:bg-slate-400 rounded-lg px-1.5 py-1 text-gray-800 text-md"
-              onClick={() => addCartClick()}
-            >
-              <ShoppingCart className="inline w-6 h-6 text-gray-800 mr-2" />
-              Add to cart
-            </button>
-            {/* )} */}
+            {!auth.isAuthenticated && (
+              <p className="mt-4">*Please login before add to cart!</p>
+            )}
+            {auth.isAuthenticated && (
+              <button
+                id="triggerElement"
+                type="button"
+                className="block mt-4 bg-[#D9D9D9] hover:bg-slate-400 rounded-lg px-1.5 py-1 text-gray-800 text-md"
+                onClick={() => addCartClick()}
+              >
+                <ShoppingCart className="inline w-6 h-6 text-gray-800 mr-2" />
+                Add to cart
+              </button>
+            )}
             {cartNotification ? (
               <div
                 className="flex items-center mt-2 p-2 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-600 dark:text-green-400"
