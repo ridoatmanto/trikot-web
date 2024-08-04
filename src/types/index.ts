@@ -35,6 +35,7 @@ export type Cart = {
 };
 
 export type CartItem = {
+  cartItem: any;
   id: string;
 
   quantity: number;
